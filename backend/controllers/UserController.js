@@ -27,12 +27,23 @@ const loginUser = async (req, res) => {
     if (!isPassword) {
       return res.json({ message: "Password is incorrect!" });
     }
-
-    const token = jwt.sign({ id: user._id }, "access_token");
-    res.json({ token, userID: user._id });
+    //generate token
+    const token = jwt.sign({ id: user._id }, "JWT_SECRET", {
+      expiresIn: "30d",
+    });
+    return res
+      .cookie("access-token", token, {
+        httpOnly: true,
+      })
+      .status(200)
+      .json({ message: "Logged in successfully" });
   } else {
     return res.json({ message: "User not register" });
   }
 };
 
-export { registerUser, loginUser };
+const logoutUser = async (req, res) => {
+  res.clearCookie("access-token");
+  res.status(200).json({ message: "User logged out" });
+};
+export { registerUser, loginUser, logoutUser };
