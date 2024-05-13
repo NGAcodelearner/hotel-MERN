@@ -2,8 +2,8 @@ import express from "express";
 
 const router = express.Router();
 
-router.post("/register", function (req, res) {});
+router.post("/register", async (req, res) => {});
 
-router.post("/login", function (req, res) {});
+router.post("/login", async (req, res) => {});
 
 export { router as userRouter };
