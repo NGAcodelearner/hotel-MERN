@@ -1,4 +1,5 @@
 import { UserModel } from "../models/UserModel.js";
+import bcrypt from "bcrypt";
 
 const registerUser = async (req, res) => {
   const { username, password } = req.body;
@@ -7,14 +8,10 @@ const registerUser = async (req, res) => {
     if (userExist) {
       res.status(400).json({ message: "User already exists" });
     } else {
-      const newUser = await UserModel.create({
-        username: username,
-        password: password,
-      });
-      res.status(201).json({
-        _id: newUser._id,
-        username: newUser.username,
-      });
+      const hashPassword = await bcrypt.hash(password, 10);
+      const newUser = new UserModel({ username, password: hashPassword });
+      await newUser.save();
+      res.json({ message: "User registered successfully" });
     }
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
