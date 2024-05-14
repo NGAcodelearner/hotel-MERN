@@ -8,7 +8,7 @@ export const authorization = async (req, res, next) => {
   try {
     const data = jwt.verify(token, "JWT_SECRET");
     // Attaching the user ID to the request object
-    req.user = data.id;
+    req.userID = data.id;
     next();
   } catch (errors) {
     console.log(errors);
