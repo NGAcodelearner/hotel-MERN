@@ -2,8 +2,8 @@ import { HotelModel } from "../models/HotelModel.js";
 
 export const getHotels = async (req, res) => {
   try {
-    const books = await HotelModel.find({});
-    res.json(books);
+    const hotels = await HotelModel.find({});
+    res.json(hotels);
   } catch (error) {
     res.json(error);
   }
@@ -12,8 +12,8 @@ export const getHotels = async (req, res) => {
 export const getHotel = async (req, res) => {
   try {
     const { id } = req.params;
-    const book = await HotelModel.findById(id);
-    res.json(book);
+    const hotel = await HotelModel.findById(id);
+    res.json(hotel);
   } catch (error) {
     res.json(error);
   }
