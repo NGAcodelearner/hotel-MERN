@@ -1,7 +1,9 @@
 import express from "express";
 import cors from "cors";
-import { userRouter } from "./routes/userRoutes.js";
+import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
+import { userRouter } from "./routes/userRoutes.js";
+import { hotelRoutes } from "./routes/hotelRoutes.js";
 
 const app = express();
 
@@ -10,9 +12,11 @@ app.use(express.json());
 
 //allow clients from different origins access to server
 app.use(cors());
-app.use(express.urlencoded({ extended: true }));
+
+app.use(cookieParser());
 
 app.use("/auth", userRouter);
+app.use("/", hotelRoutes);
 
 mongoose
   .connect(

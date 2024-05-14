@@ -25,25 +25,25 @@ const loginUser = async (req, res) => {
   if (user) {
     const isPassword = await bcrypt.compare(password, user.password);
     if (!isPassword) {
-      return res.json({ message: "Password is incorrect!" });
+      return res.status(401).json({ message: "Password is incorrect!" });
     }
-    //generate token
-    const token = jwt.sign({ id: user._id }, "JWT_SECRET", {
-      expiresIn: "30d",
-    });
-    return res
-      .cookie("access-token", token, {
-        httpOnly: true,
-      })
-      .status(200)
-      .json({ message: "Logged in successfully" });
   } else {
-    return res.json({ message: "User not register" });
+    return res.status(401).json({ message: "User not register" });
   }
+
+  //generate token
+  const token = jwt.sign({ id: user._id }, "JWT_SECRET", {
+    expiresIn: "30d",
+  });
+  res.cookie("access_token", token, {
+    httpOnly: true,
+  });
+
+  res.status(200).json({ username, token });
 };
 
 const logoutUser = async (req, res) => {
-  res.clearCookie("access-token");
+  res.clearCookie("access_token");
   res.status(200).json({ message: "User logged out" });
 };
 export { registerUser, loginUser, logoutUser };
