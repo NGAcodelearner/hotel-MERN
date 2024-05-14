@@ -1,7 +1,9 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 const Hotel = () => {
-  return <div>Hotel</div>;
+  const params = useParams();
+  return <div>{params.hotelId}</div>;
 };
 
 export default Hotel;
