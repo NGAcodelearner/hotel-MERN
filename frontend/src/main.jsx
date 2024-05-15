@@ -29,14 +29,8 @@ const router = createBrowserRouter([
     element: <CreateHotel />,
   },
   {
-    path: "/:hotelId",
-    element: <Hotel />,
-    children: [
-      {
-        path: "/:hotelId/update",
-        element: <UpdateHotel />,
-      },
-    ],
+    path: "/update",
+    element: <UpdateHotel />,
   },
 ]);
 
