@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import { UserModel } from "../models/UserModel.js";
 
 export const authorization = async (req, res, next) => {
   const token = req.cookies["access_token"];
@@ -7,8 +8,7 @@ export const authorization = async (req, res, next) => {
   }
   try {
     const data = jwt.verify(token, "JWT_SECRET");
-    // Attaching the user ID to the request object
-    req.userID = data.id;
+    req.user = await UserModel.findById(data.id).select("-password");
     next();
   } catch (errors) {
     console.log(errors);
