@@ -1,13 +1,12 @@
 
-Hotel App
-This is a simple web application where users can register, login, and create hotels. The application utilizes MongoDB for the database, React for the frontend, Node.js for the backend, and Tailwind CSS for styling.
+## Hotel App: This is a simple web application where users can register, login, and create hotels. 
 
-Features:
+## Features:
 User Registration: Users can sign up for an account to access the application.
 User Authentication: Registered users can log in securely to their accounts.
 Hotel Creation: Users can create new hotels, providing details such as name, description, image URL, and price.
 
-Technologies Used:
+## Technologies Used:
 MongoDB: NoSQL database for storing user and hotel data.
 React: JavaScript library for building the user interface.
 Node.js: JavaScript runtime environment for running the server-side code.
