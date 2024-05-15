@@ -18,6 +18,7 @@ const Login = () => {
         password,
       });
       setCookies("access_token", response.data.token);
+      window.localStorage.setItem("userId", response.data.userId);
       navigate("/");
     } catch (error) {
       console.error(error);

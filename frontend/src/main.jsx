@@ -15,28 +15,26 @@ const router = createBrowserRouter([
     path: "/",
     element: <Homepage />,
     errorElement: <NotFoundPage />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/create",
+    element: <CreateHotel />,
+  },
+  {
+    path: "/:hotelId",
+    element: <Hotel />,
     children: [
       {
-        path: "/register",
-        element: <Register />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/create",
-        element: <CreateHotel />,
-      },
-      {
-        path: "/:hotelId",
-        element: <Hotel />,
-        children: [
-          {
-            path: "/:hotelId/update",
-            element: <UpdateHotel />,
-          },
-        ],
+        path: "/:hotelId/update",
+        element: <UpdateHotel />,
       },
     ],
   },

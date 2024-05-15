@@ -27,17 +27,14 @@ const loginUser = async (req, res) => {
     if (!isPassword) {
       return res.status(401).json({ message: "Password is incorrect!" });
     }
-    //generate token
+    // Generate token
     const token = jwt.sign({ id: user._id }, "JWT_SECRET", {
       expiresIn: "30d",
     });
-    res.cookie("access_token", token, {
-      httpOnly: true,
-    });
-
+    // Send token and user ID in the response
     return res.status(200).json({ userId: user._id, token });
   } else {
-    return res.status(401).json({ message: "User not register" });
+    return res.status(401).json({ message: "User not registered" });
   }
 };
 
