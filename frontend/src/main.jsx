@@ -28,10 +28,6 @@ const router = createBrowserRouter([
     path: "/create",
     element: <CreateHotel />,
   },
-  {
-    path: "/update",
-    element: <UpdateHotel />,
-  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
